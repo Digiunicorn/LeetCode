@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0 || (x!=0 && x%10==0)){
+            return false;
+        }
+        int reverse = 0;
+        while(x>reverse){
+            reverse = (reverse*10) + (x%10);
+            x/=10;
+        } 
+        return (x==reverse) || (x==reverse/10);    //checks if reverse and x are equal in case of even num or if the num is odd, checks if reverse = x/10, ignoring the middle digits
+    }
+};
