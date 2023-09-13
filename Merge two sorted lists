@@ -1,0 +1,37 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* merge = nullptr; 
+        ListNode* p1 = list1;
+        ListNode* p2 = list2;
+        ListNode* current = nullptr; 
+
+        if (p1 == nullptr) 
+            return p2;
+        if (p2 == nullptr)
+            return p1;
+        while (p1 != nullptr && p2 != nullptr) {
+            if (p1->val < p2->val) {
+                if (merge == nullptr) {
+                    merge = p1; 
+                    current = merge;
+                } else {
+                    current->next = p1;
+                    current = current->next;
+                }
+                p1 = p1->next;
+            } else {
+                if (merge == nullptr) {
+                    merge = p2; 
+                    current = merge;
+                } else {
+                    current->next = p2;
+                    current = current->next;
+                }
+                p2 = p2->next;
+            }
+        }
+        current->next = p1 ? p1 : p2;
+        return merge; 
+    }
+};
